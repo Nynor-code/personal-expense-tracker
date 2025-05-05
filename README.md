@@ -2,7 +2,7 @@
 
 Track your expenses, store them securely in S3, and get monthly budget forecasts.
 
-This project was created in preparation to answer a company challenge with the following topics:
+This project was created for training purposes as preparation for a company challenge covering the following topics:
 - docker and docker-compose
 - model deployment (Amazon EC2)
 - AWS S3
@@ -11,7 +11,7 @@ This project was created in preparation to answer a company challenge with the f
 - SQL
 - Flask, fastAPI and REST API
 
-missing now: docker-compose, Amazon EC2, SQL
+Stil missing: **Amazon EC2**, **SQL**
 
 ## Features
 - REST API with FastAPI
@@ -42,11 +42,14 @@ expense-tracker/
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
+```
 
 ## API Endpoints
+```text
 POST /add_expense/ → Add a new expense
 GET /expenses/ → Get all expenses
 GET /forecast/ → Monthly forecast
+```
 
 ## Environment Setup
 
@@ -54,19 +57,23 @@ GET /forecast/ → Monthly forecast
 ```bash
 git clone https://github.com/Nynor-code/personal-expense-tracking.git
 cd personal-expense-tracking
+```
 
 ### 2. Create a virtual environment
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+```
 
 ### 3. Install dependencies
 ```bash
 pip install -r requirements.txt
+```
 
-### 4. Create a .env file from template
+### 4. Create a `.env` file from template
 ```bash
 cp .env.example .env
+```
 
 Update it with your AWS credentials.
 
@@ -77,33 +84,34 @@ AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=your_region
 S3_BUCKET_NAME=your_bucket
 S3_KEY=expenses.csv
-
+```
 
 # 🧪 Run Locally
-open two terminals
+Open two terminals
 
 ## Flask API (terminal 1)
 ```bash
 python src/main.py  # or make api
+```
 
 ## Streamlit Dashboard (terminal 2)
 ```bash
 streamlit run src/dashboard.py  # or make streamlit
+```
 
 # 🧪 Testing
 ```bash
 pytest   # or make test
+```
 
 # 🐳 Docker
 ```bash
 docker build -t expense-tracker .
 docker run -p 5000:5000 --env-file .env expense-tracker
+```
 
 # 👩‍💻 Author
-Created by Nuno Pires
+Created by [Nynor Pires](https://nynor-code.github.io/nfpires/)
 
 # 📄 License
 MIT License
-```yaml
----
-Would you like me to regenerate the file once the system limit resets? &#8203;:contentReference[oaicite:0]{index=0}&#8203;
