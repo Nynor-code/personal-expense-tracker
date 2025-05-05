@@ -13,6 +13,12 @@ payment_methods = ['Card', 'Cash', 'Bank Transfer', 'Mobile Payment']
 
 
 def generate_expense():
+    '''
+    Generate a random expense entry.
+    Returns:
+    - dict: A dictionary containing the expense details.
+    '''
+    # Randomly select a category and generate an amount based on that category
     category = random.choice(categories)
     base_amount = {
         'Food': (5, 30),

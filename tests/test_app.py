@@ -1,10 +1,15 @@
 # tests/test_app.py
-
 import json
 from src.main import app
 
 
 def test_add_and_get_expense():
+    '''
+    Test adding and retrieving an expense.
+    This test checks if the expense can be added successfully
+    and if it can be retrieved correctly.
+    '''
+    # Sample payload for adding an expense
     test_payload = {
         "date": "2025-05-05",
         "category": "Test",

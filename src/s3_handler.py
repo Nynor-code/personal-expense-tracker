@@ -43,7 +43,11 @@ def save_expense_to_s3(expense) -> None:
 
 
 def load_expenses_from_s3() -> pd.DataFrame:
-    """Load the expenses DataFrame from the S3 bucket."""
+    '''
+    Load expenses from the S3 bucket.
+    Returns:
+    - DataFrame: A pandas DataFrame containing the expenses.
+    '''
     try:
         response = s3.get_object(Bucket=BUCKET, Key=KEY)
         return pd.read_csv(io.BytesIO(response['Body'].read()))

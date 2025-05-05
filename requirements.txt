@@ -7,5 +7,4 @@ pytest
 streamlit
 faker
 flask
-dotenv
-pickle
+python-dotenv

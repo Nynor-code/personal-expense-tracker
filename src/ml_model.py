@@ -6,6 +6,19 @@ import pickle
 
 
 def forecast_expenses(data: pd.DataFrame):
+    '''
+    Forecast the next 3 months of expenses using a linear regression model.
+    Args:
+        data (pd.DataFrame): A DataFrame containing the expenses data.
+        The DataFrame should have the following columns:
+        - date: The date of the expense (YYYY-MM-DD)
+        - amount: The amount of the expense
+    Returns:
+        dict: A dictionary containing the forecasted expenses for the
+        next 3 months.
+        The keys are the month (YYYY-MM) and the values are the
+        forecasted amounts.
+    '''
     data['date'] = pd.to_datetime(data['date'])
     data = data.groupby(pd.Grouper(key='date', freq='ME')).sum().reset_index()
     data['timestamp'] = data['date'].astype(np.int64) // 10**9

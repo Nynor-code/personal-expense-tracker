@@ -1,0 +1,48 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: expense_api
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    volumes:
+      - .:/src
+    depends_on:
+      - minio
+    restart: unless-stopped
+
+  streamlit:
+    image: python:3.10
+    container_name: expense_dashboard
+    working_dir: /src
+    volumes:
+      - .:/src
+    command: >
+      bash -c "pip install -r requirements.txt && streamlit run src/dashboard.py --server.port 8501 --server.enableCORS false"
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  minio:
+    image: minio/minio
+    container_name: expense_minio
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000" # S3 API
+      - "9001:9001" # Web UI
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    volumes:
+      - minio-data:/data
+    restart: unless-stopped
+
+volumes:
+  minio-data:

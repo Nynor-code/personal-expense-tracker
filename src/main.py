@@ -33,6 +33,15 @@ REQUIRED_FIELDS = ["date", "category", "amount",
 
 @app.route("/add_expense/", methods=["POST"])
 def add_expense():
+    '''
+    Endpoint to add an expense.
+    Expects a JSON payload with the following fields:
+    - date: The date of the expense (YYYY-MM-DD)
+    - category: The category of the expense
+    - amount: The amount of the expense
+    - payment_method: The payment method used
+    - description: A description of the expense
+    '''
     data = request.get_json()
     if not all(field in data for field in REQUIRED_FIELDS):
         return jsonify({"error": "Missing required fields"}), 400
@@ -42,12 +51,32 @@ def add_expense():
 
 @app.route("/expenses/", methods=["GET"])
 def get_expenses():
+    '''
+    Endpoint to get all expenses.
+    Returns a JSON array of expenses.
+    Each expense is an object with the following fields:
+    - date: The date of the expense (YYYY-MM-DD)
+    - category: The category of the expense
+    - amount: The amount of the expense
+    - payment_method: The payment method used
+    - description: A description of the expense
+    '''
     df = ld_expenses()
     return jsonify(df.to_dict(orient="records"))
 
 
 @app.route("/forecast/", methods=["GET"])
 def forecast():
+    '''
+    Endpoint to get the forecast of expenses.
+    Returns a JSON array of forecasted expenses.
+    Each forecasted expense is an object with the following fields:
+    - date: The date of the forecasted expense (YYYY-MM-DD)
+    - category: The category of the forecasted expense
+    - amount: The forecasted amount of the expense
+    - payment_method: The payment method used
+    - description: A description of the forecasted expense
+    '''
     data = ld_expenses()
     return forecast_expenses(data)
 
