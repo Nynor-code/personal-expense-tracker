@@ -1,16 +1,27 @@
 # tests/test_app.py
-from fastapi.testclient import TestClient
+
+import json
 from src.main import app
 
-client = TestClient(app)
 
 def test_add_and_get_expense():
-    payload = {"date": "2025-05-05", "category": "Test", "amount": 42.0}
-    res = client.post("/add_expense/", json=payload)
-    assert res.status_code == 200
-    assert res.json()["status"] == "ok"
+    test_payload = {
+        "date": "2025-05-05",
+        "category": "Test",
+        "amount": 42.0,
+        "payment_method": "Credit Card",
+        "description": "Test expense"
+    }
 
-    res = client.get("/expenses/")
-    assert res.status_code == 200
-    assert any(exp["category"] == "Test" for exp in res.json())
+    with app.test_client() as client:
+        # POST new expense
+        res = client.post("/add_expense/", data=json.dumps(test_payload),
+                          content_type='application/json')
+        assert res.status_code == 200
+        assert res.get_json()["status"] == "Expense Saved"
 
+        # GET expenses
+        res = client.get("/expenses/")
+        assert res.status_code == 200
+        expenses = res.get_json()
+        assert any(exp["category"] == "Test" for exp in expenses)

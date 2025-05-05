@@ -5,3 +5,7 @@ scikit-learn
 boto3
 pytest
 streamlit
+faker
+flask
+dotenv
+pickle

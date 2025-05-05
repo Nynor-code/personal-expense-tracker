@@ -2,23 +2,108 @@
 
 Track your expenses, store them securely in S3, and get monthly budget forecasts.
 
+This project was created in preparation to answer a company challenge with the following topics:
+- docker and docker-compose
+- model deployment (Amazon EC2)
+- AWS S3
+- pandas
+- pytest
+- SQL
+- Flask, fastAPI and REST API
+
+missing now: docker-compose, Amazon EC2, SQL
+
 ## Features
 - REST API with FastAPI
-- Data stored in AWS S3
 - ML Forecasting (3-month horizon)
-- Optional Streamlit Dashboard
 - Docker + Pytest + Pandas
+- Add and retrieve personal expenses via API  
+- Store and read data from AWS S3 (CSV format)  
+- Machine Learning-based forecasting (Linear Regression)  
+- Streamlit dashboard for visual insights  
+- Docker-ready for deployment  
+- `.env` file for secure configuration
+
+
+## File Structure
+
+```text
+expense-tracker/
+├── app/
+│   ├── main.py               # FastAPI app
+│   ├── ml_model.py           # Forecasting logic
+│   ├── s3_handler.py         # Save/load expenses in S3
+│   ├── schemas.py            # Pydantic models
+├── streamlit_app/
+│   └── dashboard.py          # Optional frontend
+├── tests/
+│   └── test_app.py
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
 
 ## API Endpoints
 POST /add_expense/ → Add a new expense
 GET /expenses/ → Get all expenses
 GET /forecast/ → Monthly forecast
 
+## Environment Setup
 
-## Setup
-
+### 1. Clone the repo
 ```bash
-git clone https://github.com/youruser/personal-expense-tracking.git
+git clone https://github.com/Nynor-code/personal-expense-tracking.git
 cd personal-expense-tracking
-cp .env.template .env  # Fill in your AWS credentials
-docker-compose up --build
+
+### 2. Create a virtual environment
+```bash
+python -m venv .venv
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+
+### 4. Create a .env file from template
+```bash
+cp .env.example .env
+
+Update it with your AWS credentials.
+
+# 🔐 .env Configuration
+```dotenv
+AWS_ACCESS_KEY_ID=your_access_key
+AWS_SECRET_ACCESS_KEY=your_secret_key
+AWS_REGION=your_region
+S3_BUCKET_NAME=your_bucket
+S3_KEY=expenses.csv
+
+
+# 🧪 Run Locally
+open two terminals
+
+## Flask API (terminal 1)
+```bash
+python src/main.py  # or make api
+
+## Streamlit Dashboard (terminal 2)
+```bash
+streamlit run src/dashboard.py  # or make streamlit
+
+# 🧪 Testing
+```bash
+pytest   # or make test
+
+# 🐳 Docker
+```bash
+docker build -t expense-tracker .
+docker run -p 5000:5000 --env-file .env expense-tracker
+
+# 👩‍💻 Author
+Created by Nuno Pires
+
+# 📄 License
+MIT License
+```yaml
+---
+Would you like me to regenerate the file once the system limit resets? &#8203;:contentReference[oaicite:0]{index=0}&#8203;
