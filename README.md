@@ -33,11 +33,14 @@ expense-tracker/
 │   ├── main.py               # FastAPI app
 │   ├── ml_model.py           # Forecasting logic
 │   ├── s3_handler.py         # Save/load expenses in S3
+│   ├── db.py                 # Save/load expenses in local CSV
 │   ├── schemas.py            # Pydantic models
 ├── streamlit_app/
 │   └── dashboard.py          # Optional frontend
 ├── tests/
-│   └── test_app.py
+│   └── test_app.py           # testing usecases 
+├── models/          
+│   └── model_LR.pkl          # Models saved
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
