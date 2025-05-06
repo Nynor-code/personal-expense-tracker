@@ -79,7 +79,9 @@ def forecast():
     - description: A description of the forecasted expense
     '''
     data = ld_expenses()
-    return forecast_expenses(data)
+    forecasted = forecast_expenses(data)
+    return jsonify({"forecast": forecasted})
+
 
 
 if __name__ == '__main__':

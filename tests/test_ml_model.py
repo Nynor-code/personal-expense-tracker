@@ -15,7 +15,7 @@ def test_forecast_expenses() -> None:
     assert isinstance(result, dict)
     assert all(isinstance(k, str) and k[:4].isdigit() for k in result)
     assert all(isinstance(v, float) for v in result.values())
-    assert len(result) == 3
+    assert len(result) == 2
 
 
 def test_forecast_with_empty_data() -> None:

@@ -41,7 +41,7 @@ def forecast_expenses(data):
 
     # Forecast for the next 3 months (assume 30-day months)
     forecast = {}
-    for i in range(1, 5):
+    for i in range(1, 4):
         future_day = df['days'].max() + i * 30
         future_date = df['date'].max() + timedelta(days=i * 30)
 
