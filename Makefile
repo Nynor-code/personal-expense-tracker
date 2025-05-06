@@ -35,3 +35,21 @@ clear_docker:
 
 deep_clear_docker:
 	docker system prune -a --volumes
+
+# tests coverage report HTML "pip install pytest.coverage"
+test_coverage_html:
+	coverage html
+
+test_pytest:
+	clear; pytest --cov
+
+# run all tests
+test_all:
+	pytest tests/
+	flake8 src tests streamlit_app
+	isort --check-only src tests streamlit_app
+	mypy src
+	pylint src tests streamlit_app
+	pytest --cov=src --cov-report=html
+	pytest --cov=src --cov-report=xml
+	pytest --cov=src --cov-report=term-missing
