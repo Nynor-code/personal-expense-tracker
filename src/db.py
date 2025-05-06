@@ -29,5 +29,4 @@ def load_expenses():
         return pd.DataFrame(columns=[
             "date", "category", "amount",
             "payment_method", "description"
-                                    ]
-                            )
+                                    ])

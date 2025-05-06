@@ -5,7 +5,6 @@ It allows users to add expenses, view them, and see a forecast of future
 expenses.
 It interacts with a FastAPI backend to handle data storage and retrieval.
 '''
-
 import streamlit as st
 import pandas as pd
 import requests

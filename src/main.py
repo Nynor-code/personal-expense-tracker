@@ -1,11 +1,12 @@
 # app/main.py
-from src.db import save_expense, load_expenses
-from src.ml_model import forecast_expenses
-from src.s3_handler import save_expense_to_s3, load_expenses_from_s3
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
+
+from src.db import save_expense, load_expenses
+from src.ml_model import forecast_expenses
+from src.s3_handler import save_expense_to_s3, load_expenses_from_s3
 
 
 # Loads variables from .env into environment
